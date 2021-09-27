@@ -4,24 +4,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>Coding Quiz Chnallenge</title>
 </head>
 <body>
-    <header>
-        <div class="large-font">Coding Quiz Challenge</div>
-      </header>
-      <main>
-          <section>
-            <button class="start-button">Start</button>
-            <div id= "results"></div> 
-                <button class="reset-button">Reset Score</button>
-            </div>
-            <div class="card timer">
-              <div class="timer-text">
-                <div class="large-font timer-count">10</div>
-                <h3>seconds remaining</h3>
+  <div class="container">
+    <div id="question-container" class="hide">
+      <div id="question">Question</div>
+      <div id="answer-buttons" class="btn-grid">
+        <button class="btn">Answer 1</button>
+        <button class="btn">Answer 2</button>
+        <button class="btn">Answer 3</button>
+        <button class="btn">Answer 4</button>
+      </div>
+
+  <div class="controls">
+    <button id="start-btn" class="start-btn-btn">Start</button></div>
+    <button id="quit-btn" class="quit-btn-btn">QUIT</button>
+    <BUTTON ID="reset" class="reset-btn-btn">Reset</BUTTON>
+          </div>
+              <div class="timer">
+                <div id="timer-left-text">Time Left</div>
+                  <div id="timer-count">30</div>
+                  <h3>seconds remaining</h3>
+            <div class= "results"> Results</div> 
+            <script src="code.js"></script>
                          </div>
                         </section>
-                        <script src="code.js"></script>
-</body>
+                      </body>
 </html>

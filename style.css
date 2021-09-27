@@ -1,0 +1,51 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    font-family: monospace;
+  }
+  
+  body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    width: 100vh; 
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background:  linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+  }
+   .container {
+    width: 800px;
+    max-width: 80%;
+    background-color: rgb(114, 101, 101);
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px lemonchiffon;
+  }
+  .btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+  }
+  .btn {
+    color: black;
+    background-color: rgb(69, 160, 212) 100%, 50%;
+    border: 5px solid darkslateblue
+    border-radius: 6px;
+    padding: 5px 10px;
+    outline: none;
+  }
+
+  .btn:hover {
+    border-color: rgb(36, 89, 189);
+  }
+
+  .controls {
+    display: inline;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px 20px;
+    }
+     
