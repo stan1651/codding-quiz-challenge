@@ -1,177 +1,185 @@
-const startbutton = document.getElementById("start-btn")
-const questionContainerElement = document.getElementById("question-container")
-const questionElement = document.getElementById("question")
-const answerButtonElement = document.getElementById("answer-buttons")
-
-let shuffledQuestions, currentQuestionIndex
-var continueButton = document.querySelector("restart");
-var win = document.querySelector(".win");
-var lose = document.querySelector(".lose");
-var timerElement = document.querySelector(".timer-count");
-
-var quitButton = document.querySelector("quit-button");
-var winCounter = 0;
-var loseCounter = 0;
-var isWin = false;
-var timer;
-
-startbutton.addEventListener('click', startGame)
-
-function startGame() {
-  startbutton.classList.add("hide")
-  shuffledQuestions = questions.sort() => Math.random( - .5)
-  currentQuestionIndex = 0
-  questionContainerElement.classList.remove('hide')
-  setNextQuestion()
-}
-function setNextQuestion() {
-  showQuestion(shuffledQuestions[currentQuestionIndex])
-}
-function showQuestion(question) {
-  questionElement.innerText = question.question
-}
 const questions = [
   {
     question: "What does CSS stand for?",
-    answer: [
-      {text:"Cascading Style Sheet", correct: true},
-      { text:"Clearly Soul Sucking", correct: false},
-      {text:"Collusive System Style", correct: false},
-      {text:"Collective Styles Syntax", correct: false},
-    ] 
+    options: [ 
+      "Cascading Style Sheet",
+      "Clearly Soul Sucking", 
+      "Collusive System Style", 
+      "Collective Styles Syntax"], 
+      answer:"cascading Style Sheet",   
   },
   {
-    question: 2,
     question: "What are variables used for in JavaScript programs?",
-    answer: "Storing numbers, dates ir other valuables",
-    options:[
+    options: ["Storing numbers, dates or other valuables",
       "Varying Randomly",
       "Varying purposefully out of spite",
-      "Controlling stylistic choices of the page.",
-    ]
+      "Controlling stylistic choices of the page."],
+      answer:"Storing numbers, dates or other valuables",    
   },
   {
-    question: 3,
   question: "Inside which HTML element do you put Javascipt?",
-  answer: "<script>",
-  options:[
+  options: ["<script>",
     "<img>",
     "<button>",
-    "<src>",
-  ]
+    "<src>"],
+  answer:"<script>"
   },
   {
-    question: 4,
-    question: "Which company devolped JavaScript? ",
-    answer: "Netscape",
-    options:[
+    question:"Which company devolped JavaScript? ",
+    options: [
+      "Netscape",
       "Microsoft",
       "Apple",
-      "From Software",
-    ] 
+      "From Software"],
+      answer: "Netscape",   
   },
   {
-    question: 5,
     question: "Which is NOT a type of pop up box in JavaScript?",
-    answer: "Declare",
-    options:[
+    options: [
       "Alert",
       "Confirm",
-      "Prompt"
-    ]}]
-    var currentQuestion = 0;
-    var correctAnswers = 0;
-    var quizOver = false;
-
-    var quizMessage = document.querySelector("quizMessage");
-    function setWins() {
-      win.textContent = winCounter;
-      localStorage.setItem('winCount', winCounter);
-    }
-    
-    // Updates lose count on screen and sets lose count to client storage
-    function setLosses() {
-      lose.textContent = loseCounter;
-      localStorage.setItem('loseCount', loseCounter);
-    }
-    
-    // These functions are used by init to display values from local storage
-    function getWins() {
-      // Get stored value from client storage, if it exists
-      var storedWins = localStorage.getItem('winCount');
-      // If stored value doesn't exist, set counter to 0
-      if (storedWins === null) {
-        winCounter = 0;
-      } else {
-        // If a value is retrieved from client storage set the winCounter to that value
-        winCounter = storedWins;
-      }
-      // Render win count to page
-      win.textContent = winCounter;
-    }
-    
-    function getlosses() {
-      var storedLosses = localStorage.getItem('loseCount');
-      if (storedLosses === null) {
-        loseCounter = 0;
-      } else {
-        loseCounter = storedLosses;
-      }
-      lose.textContent = loseCounter;
-    }
-    
-    // The init function is called when the page loads
-    function init() {
-      getWins();
-      getlosses();
-    }
-    // The winGame function is called when the win condition is met
-    function winGame() {
-      wordBlank.textContent = 'YOU WON!!!🏆 ';
-      winCounter++;
-      startButton.disabled = false;
-      setWins();
-    }
-    
-    // The loseGame function is called when timer reaches 0
-    function loseGame() {
-      wordBlank.textContent = 'GAME OVER';
-      loseCounter++;
-      startButton.disabled = false;
-      setLosses();
-    }
-    
-    // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
-    function startTimer() {
-      // Sets timer
-      timer = setInterval(function () {
-        timerCount--;
-        timerElement.textContent = timerCount;
-        if (isWin && timerCount > 0) {
-          clearInterval(timer);
-          winGame();
-        }
-        // Tests if time has run out
-        if (timerCount <= 0) {
-          // Clears interval
-          clearInterval(timer);
-          loseGame();
-        }
-      }, 1000);
-    }
-    function startGame() {
-      isWin = false;
-      timerCount = 30;
-      // Prevents start button from being clicked when round is in progress
-      startButton.disabled = true;
-      renderBlanks();
-      startTimer();
-   
+      "Prompt",
+      "Declare"],
+      answer: "Declare",
+    }];
 
 
- function setWins() {
-  win.textContent = winCounter;
-  localStorage.setItem('winCount', winCounter);
-}
+
+
+
+const startbutton = document.getElementById("start-btn")
+
+const questionContainerElement = document.getElementById("question-container")
+
+const questionElement = document.getElementById("question")
+
+const answerButtonElement = document.getElementById("answer-buttons")
+
+var QuestionCount = 0
+
+const continueButton = document.querySelector("restart");
+
+const quitButton = document.getElementById("quit-button");
+
+var win = document.querySelector(".win");
+
+var lose = document.querySelector(".lose");
+
+const timerElement = document.querySelector(".timer-count");
+let timer = document.getElementById("timer")
+
+var winCounter = 0;
+
+var isWin = false;
+
+var secondsLeft = 60;
+//high score
+let emptyArray = []
+
+let storedArray = JSON.parse(window.localStorage.getItem("high-scores"));
+
+function startGame() {
+  isWin = false;
+  timerCount = 10;
+  // Prevents start button from being clicked when round is in progress
+  startButton.disabled = true;
+  renderBlanks();
+  startTimer()
+
 startButton.addEventListener("click", startGame);
+startbutton() 
+  
+
+
+
+
+function displayQuestions() {
+} 
+if (questionElement < questionElement.length) {
+  questionElement.innerHTML = questionS[questionCount].title;
+  choices.textContent = "";
+  function getQuestion() {
+    // get current question object from array
+    var currentQuestion = questions[currentQuestionIndex];
+  
+    // update title with current question
+    var titleEl = document.getElementById("question-title");
+    titleEl.textContent = currentQuestion.title;
+  
+    // clear out any old question choices
+    choicesEl.innerHTML = "";
+  
+    // loop over choices
+    currentQuestion.choices.forEach(function(choice, i) {
+      // create new button for each choice
+      var choiceNode = document.createElement("button");
+      choiceNode.setAttribute("class", "choice");
+      choiceNode.setAttribute("value", choice);
+  
+      choiceNode.textContent = i + 1 + ". " + choice;
+  
+      // attach click event listener to each choice
+      choiceNode.onclick = questionClick;
+  
+      // display on the page
+      choicesEl.appendChild(choiceNode);
+    });
+  }
+  
+  function questionClick() {
+    // check if user guessed wrong
+    if (this.value !== questions[currentQuestionIndex].answer) {
+      // penalize time
+      time -= 15;
+  
+      if (time < 0) {
+        time = 0;
+      }
+  
+      // display new time on page
+      timerEl.textContent = time;
+
+  for (let i = 0; i < questions[questionCount].multiChoice.length; i++){
+    let el = document.createElement("button");
+    el.innerText = questions[questionCount].multiChoice[i];
+    el.setAttribute("data-id", i);
+    el.addEventListener("click, function") 
     }
+  }
+  if (el.innerText === questions[questionCount].answer) {
+    score += secondsLeft;
+  } else {
+    secondsLeft = secondsLeft - 30;
+  }
+  questionElement.innerHTML = "";
+  if (questionCount === questions.length) {
+  return ;
+  } else {
+    questionCount++;
+    displayQuestions();
+  }
+}
+
+
+
+
+
+
+//function showQuestion(question) {
+  //questionElement.innerText = question.question
+//}
+// set function to loop through questions object.
+//function getQuestions(){
+  //var currentQuestions = questions[currentQuestionIndex]
+  //updating title with our current questions
+  //var titleElement = document.getElementById('question-title');
+  //t//itleElement.textContent = currentQuestions.title;
+  //answerButtonElement.innerHTML = "";
+  //loop over the choices
+  //currentQuestions.options.forEach(function(option,i){
+    
+    //on click event set equal to   then do conditionals. time penalty in conditions, 
+    //dynmically insert button for each question button as answer choices
+  //})
+//}
+//feedback element ie correct, incorrect
