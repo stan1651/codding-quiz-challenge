@@ -1,51 +1,89 @@
-*, *::before, *::after {
-    box-sizing: border-box;
-    font-family: monospace;
-  }
-  
-  body {
-    padding: 0;
-    margin: 0;
-    display: flex;
-    width: 100vh; 
-    min-height: 100vh;
-    justify-content: center;
-    align-items: center;
-    background:  linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
-  }
-   .container {
-    width: 800px;
-    max-width: 80%;
-    background-color: rgb(114, 101, 101);
-    border-radius: 6px;
-    padding: 10px;
-    box-shadow: 0 0 10px 2px lemonchiffon;
-  }
-  .btn-grid {
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    gap: 10px;
-    margin: 20px 0;
-  }
-  .btn {
-    color: black;
-    background-color: rgb(69, 160, 212) 100%, 50%;
-    border: 5px solid darkslateblue
-    border-radius: 6px;
-    padding: 5px 10px;
-    outline: none;
-  }
+body {
+  font-family: Arial;
+  font-size: 120%;
+  background-color: aquamarine;
+}
 
-  .btn:hover {
-    border-color: rgb(36, 89, 189);
-  }
+a {
+  color: #f9f8fa;
+  text-decoration: none;
+  transition: color 0.1s;
+}
 
-  .controls {
-    display: inline;
-    justify-content: center;
-    align-items: center;
-    font-size: 25px;
-    font-weight: bold;
-    padding: 10px 20px;
-    }
-     
+a:hover {
+  color: #5e5c61;
+}
+
+button {
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 100%;
+  background-color: #be3e73;
+  border-radius: 5px;
+  padding: 2px 10px;
+  color: white;
+  border: 0;
+  transition: background-color 0.1s;
+}
+
+button:hover {
+  background-color: #a1a570;
+}
+
+.choices button {
+  display: block;
+}
+
+input[type='text'] {
+  font-size: 100%;
+}
+
+ol {
+  padding-left: 0px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+li {
+  padding: 5px;
+  list-style: decimal inside none;
+}
+
+li:nth-child(odd) {
+  background-color: #befcc3;
+}
+
+.wrapper {
+  margin: 100px auto 0 auto;
+  max-width: 600px;
+}
+
+.hide {
+  display: none;
+}
+
+.start {
+  text-align: center;
+}
+
+.scores {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.feedback {
+  font-style: italic;
+  font-size: 120%;
+  margin-top: 20px;
+  padding-top: 10px;
+  color: gray;
+  border-top: 2px solid #ccc;
+}
+
+.timer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
